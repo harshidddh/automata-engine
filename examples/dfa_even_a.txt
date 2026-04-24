@@ -1,0 +1,7 @@
+dfa
+w has an even number of 'a's
+ab
+0
+0
+0 1 0   ; State 0 (even 'a', accept): 'a' -> 1 | 'b' -> 0
+1 0 1   ; State 1 (odd 'a'): 'a' -> 0 | 'b' -> 1
