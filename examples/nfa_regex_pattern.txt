@@ -2,7 +2,7 @@ nfa
 w matches 1*(001+)*
 01
 0
-3
+0 3
 0 1 0   ; State 0 (start): '0' -> 1 | '1' -> 0
 1 2 -   ; State 1: '0' -> 2 | '1' -> dead
 2 - 3   ; State 2: '0' -> dead | '1' -> 3
