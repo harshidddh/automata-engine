@@ -77,3 +77,36 @@ class DFA(Automaton):
             print(f"  [DFA] Final State: {current_state} | Accepted: {is_accepted}\n")
         return is_accepted
 
+
+class NFA(Automaton):
+    """Nondeterministic Finite Automaton: Evaluates multiple active branches simultaneously."""
+
+    def accepts(self, input_string: str, verbose: bool = False) -> bool:
+        current_states = {self.start_state}
+
+        for symbol in input_string:
+            if symbol not in self.alphabet:
+                raise ValueError(f"Symbol '{symbol}' not in alphabet.")
+
+            if verbose:
+                print(f"  [NFA] Input: {symbol} | Active States: {current_states}", end="")
+
+            next_states = set()
+            for state in current_states:
+                state_transition = (state, symbol)
+                if state_transition in self.delta:
+                    for target in self.delta[state_transition]:
+                        if target != "-":
+                            next_states.add(target)
+
+            current_states = next_states
+
+            if verbose: print(f" -> Next Active: {current_states}")
+
+            if not current_states:
+                break  # All branches died
+
+        is_accepted = any(state in self.accept_states for state in current_states)
+        if verbose:
+            print(f"  [NFA] Final Active States: {current_states} | Accepted: {is_accepted}\n")
+        return is_accepted
