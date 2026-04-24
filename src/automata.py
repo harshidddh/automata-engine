@@ -48,3 +48,32 @@ class Automaton:
         else:
             raise ValueError(f"Unknown machine type: must be 'dfa' or 'nfa'")
 
+
+class DFA(Automaton):
+    """Deterministic Finite Automaton: Enforces strict 1:1 state transitions."""
+
+    def accepts(self, input_string: str, verbose: bool = False) -> bool:
+        current_state = self.start_state
+
+        for symbol in input_string:
+            if symbol not in self.alphabet:
+                raise ValueError(f"Symbol '{symbol}' not in alphabet.")
+
+            if verbose:
+                print(f"  [DFA] Input: {symbol} | Current: {current_state}", end="")
+
+            state_transition = (current_state, symbol)
+            if state_transition in self.delta:
+                # DFA has exactly one target state per transition
+                current_state = list(self.delta[state_transition])[0]
+            else:
+                if verbose: print(" -> [REJECTED: Missing Transition]")
+                return False
+
+            if verbose: print(f" -> Next: {current_state}")
+
+        is_accepted = current_state in self.accept_states
+        if verbose:
+            print(f"  [DFA] Final State: {current_state} | Accepted: {is_accepted}\n")
+        return is_accepted
+
