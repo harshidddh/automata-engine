@@ -1,0 +1,8 @@
+nfa
+w ends with '00'
+01
+0
+2
+0 0,1 0   ; State 0 (start): '0' -> 0,1 | '1' -> 0
+1 2 -     ; State 1: '0' -> 2   | '1' -> dead
+2 - -     ; State 2 (accept): '0' -> dead | '1' -> dead

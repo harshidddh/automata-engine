@@ -1,0 +1,8 @@
+dfa
+w contains at least two consecutive 'a's
+ab
+0
+2
+0 1 0   ; State 0 (start): 'a' -> 1 | 'b' -> 0
+1 2 0   ; State 1: 'a' -> 2 | 'b' -> 0
+2 2 2   ; State 2 (accept): 'a' -> 2 | 'b' -> 2
