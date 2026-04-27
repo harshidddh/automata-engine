@@ -13,5 +13,5 @@ This engine supports both **Deterministic Finite Automata (DFA)** and **Nondeter
 ## Installation
 Clone the repository. No external libraries or virtual environments are required.
 ```bash
-git clone [https://github.com/harshidddh/automata-engine.git](https://github.com/yourusername/automata-engine.git)
+git clone https://github.com/harshidddh/automata-engine.git
 cd automata-engine
